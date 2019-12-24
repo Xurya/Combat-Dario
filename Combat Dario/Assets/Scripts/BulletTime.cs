@@ -4,7 +4,8 @@ public class BulletTime : MonoBehaviour
 {
     public static int DEFAULT_LAYER = 0;
 
-    [Header("Settings")]
+    [Header("Properties")]
+    public GameObject filter;
     public bool bulletTime = false;
     public int layerToggle = 9;
     public int duration = 0;
@@ -20,7 +21,13 @@ public class BulletTime : MonoBehaviour
 
     public void Toggle()
     {
+        if(filter == null)
+        {
+            return;
+        }
+
         bulletTime = !bulletTime;
+        filter.SetActive(bulletTime);
         if (bulletTime)
         {
             this.gameObject.layer = layerToggle;
