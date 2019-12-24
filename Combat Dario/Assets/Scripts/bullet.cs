@@ -27,12 +27,12 @@ public class bullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D obj)
+    private void OnTriggerEnter2D(Collider2D obj)
     {
         if (obj.gameObject.tag != "Player")
         {
             //Add destroy animation?
-            Destroy(obj.gameObject);
+            //Destroy(obj.gameObject);
             Destroy(gameObject);
         }
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 199248564790404350}
   - component: {fileID: 5572066599434591960}
   - component: {fileID: 5241622753214189730}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: GrayBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
