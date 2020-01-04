@@ -29,10 +29,13 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D obj)
     {
-        if (obj.gameObject.tag != "Player")
+        if (obj.gameObject.tag != "Player" && obj.gameObject.tag != "Trap")
         {
-            //Add destroy animation?
-            //Destroy(obj.gameObject);
+            if(obj.gameObject.tag == "Target")
+            {
+                Destroy(obj.gameObject);
+                //Add destroy animation?
+            }
             Destroy(gameObject);
         }
     }
