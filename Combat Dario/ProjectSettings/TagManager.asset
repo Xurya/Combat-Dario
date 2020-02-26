@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BulletJump
   - Trap
+  - GC
   layers:
   - Default
   - TransparentFX
