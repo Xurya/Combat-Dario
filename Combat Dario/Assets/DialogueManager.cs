@@ -10,7 +10,9 @@ public class DialogueManager : MonoBehaviour
     public GameObject panel; 
     public Text name_box;
     public Text dialogue_box;
+    public Image avatar_box;
     private Queue<string> sentences;
+    private Queue<Dialogue> diags;
 
     private void Awake()
     {
@@ -29,15 +31,29 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+        diags = new Queue<Dialogue>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue[] dialogue)
     {
+        foreach(Dialogue d in dialogue)
+        {
+            diags.Enqueue(d);
+        }
+        StartDialogue();
+    }
+
+    public void StartDialogue()
+    {
+        Dialogue dialogue = diags.Dequeue();
+
         Time.timeScale = 0;
         panel.SetActive(true);
 
 
         name_box.text = dialogue.name;
+        avatar_box.sprite = dialogue.avatar;
+        
 
         sentences.Clear();
 
@@ -51,9 +67,13 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count == 0)
+        if(sentences.Count == 0 && diags.Count == 0)
         {
             EndDialogue();
+            return;
+        }else if(sentences.Count == 0)
+        {
+            StartDialogue();
             return;
         }
 
