@@ -6,7 +6,7 @@ public class FallingSpike : MonoBehaviour {
     [Header("Properties")]
 	private Rigidbody2D rb;
 	private PolygonCollider2D collider;
-	public int gravity = 5;
+	public float gravity = 5;
 	public int tickCount = 0;
 	public bool selfDel = false;
 	public float lifespan = .5f;
