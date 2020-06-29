@@ -1215,14 +1215,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  jump: 2
+  jump: 2.1
   jumping: 0
   jumpTime: 0.2
+  spiritToggler: {fileID: 0}
   feetPos: {fileID: 6448235915049831920}
   checkRadius: 0.01
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 5376
+    m_Bits: 4352
+  whatIsSpiritGround:
+    serializedVersion: 2
+    m_Bits: 5120
   frontCheck: {fileID: 566038852}
   wallSlidingSpeed: 0.5
   xWallForce: 1.5

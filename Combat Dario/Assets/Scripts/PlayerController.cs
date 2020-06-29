@@ -23,10 +23,13 @@ public class PlayerController : MonoBehaviour
     public float jumpTime = 0.2f;
     float jumpTimeCounter = 0;
 
+    public BulletTime spiritToggler;
+    private bool isSpirit = false;
     private bool grounded;
     public Transform feetPos;
     public float checkRadius = 0.01f;
     public LayerMask whatIsGround;
+    public LayerMask whatIsSpiritGround;
 
     bool wallSliding = false;
     public Transform frontCheck;
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.position = GameController.instance.lastCheckpointPos;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        spiritToggler = this.gameObject.GetComponent<BulletTime>();
     }
 
     // Update is called once per frame
@@ -79,7 +83,12 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.identity;
         }
 
-        grounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        isSpirit = spiritToggler.isSpiritMode();
+        if (!isSpirit) {
+            grounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        } else {
+            grounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsSpiritGround);
+        }
 
         if (grounded) {
             lockMove = false;
@@ -105,9 +114,13 @@ public class PlayerController : MonoBehaviour
             jumping = false;
         }
 
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
+        if (!isSpirit) {
+            isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsGround);
+        } else {
+            isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, checkRadius, whatIsSpiritGround);
+        }
 
-        if(isTouchingFront && !grounded && moveInput != 0) {
+        if (isTouchingFront && !grounded && moveInput != 0) {
             wallSliding = true;
         } else {
             wallSliding = false;

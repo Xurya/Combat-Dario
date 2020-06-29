@@ -37,4 +37,8 @@ public class BulletTime : MonoBehaviour
             this.gameObject.layer = DEFAULT_LAYER;
         }
     }
+
+    public bool isSpiritMode() {
+        return bulletTime;
+    }
 }
